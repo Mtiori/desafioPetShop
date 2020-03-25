@@ -1,0 +1,50 @@
+create table Fornecedor(
+	id int primary key NOT NULL,
+	nome varchar(255) NOT NULL,
+	email varchar(255) NOT NULL,
+    cnpj varchar(255) NOT NULL
+);
+
+create table Cliente(
+	id int primary key NOT NULL,
+	nome varchar(255) NOT NULL,
+	email varchar(255) NOT NULL,
+    cpf varchar(255) NOT NULL
+);
+
+create table Endereco(
+	id int primary key NOT NULL,
+    rua varchar(255) NOT NULL, 
+    numero varchar(10) NOT NULL, 
+    distrito varchar(255) NOT NULL,
+    cep varchar(255) NOT NULL,
+    cidade varchar(255) NOT NULL,
+    estado varchar(255) NOT NULL,
+    complemento varchar(255),
+    id_Cliente	int,
+    Foreign Key (id_Cliente) references Cliente(id)
+);
+
+create table Telefone(
+	id int primary key NOT NULL,
+    ddi int NOT NULL,
+    ddd int NOT NULL,
+    numero varchar(9) NOT NULL,
+    descricao varchar(255) NOT NULL,
+    id_Cliente	int,
+    Foreign Key (id_Cliente) references Cliente(id),
+    id_Fornecedor int,
+    Foreign Key (id_Fornecedor) references Cliente(id)
+);
+
+select * from Fornecedor;
+select * from Cliente;
+select * from Telefone;
+select * from endereco;
+select * from Cliente c inner join Endereco e on c.id = e.id_Cliente;
+
+insert into Fornecedor (id, nome, email, telefone, cnpj) values (1,"Ronaldo Giovani","rgiovani@gmail.com","43.953.929/0001-48");
+insert into Cliente (id, nome, email, telefone, cpf) values (1,"Thiago leifer","tLeifer@gmail.com","867.828.910-42");
+insert into Endereco(id, rua, numero, distrito, cep, cidade, estado, complemento, id_Cliente) values(1, 'rua guedner perera', '1073', 'Zona 07', '85622-140', 'Maringá', 'Paraná','', 1);
+
+select * from cliente;
